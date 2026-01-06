@@ -1,0 +1,105 @@
+{
+  "name": "Bogyo",
+  "version": "1.0",
+  "metadata": {
+    "author": "",
+    "description": ""
+  },
+  "playSettings": {
+    "width": 640,
+    "height": 480,
+    "scaleMode": "FIT",
+    "autoCenter": true
+  },
+  "prefabs": [],
+  "createdAt": "2026-01-04T23:11:27.799Z",
+  "modifiedAt": "2026-01-05T17:58:22.551Z",
+  "activeSceneId": "c416a6a7-6375-41a5-8be0-59950975f6fe",
+  "objects": [
+    {
+      "id": "91eb3456-a1fe-4152-8fb7-ff30785dbb0a",
+      "name": "SprBlock0",
+      "components": [
+        {
+          "id": "b17c1bed-17b2-4511-baeb-a65ec3451d28",
+          "type": "image",
+          "enabled": true,
+          "imageAssetPath": "Assets/Images/spr_block_0.png",
+          "originX": 0.5,
+          "originY": 0.5
+        }
+      ],
+      "properties": {},
+      "createdAt": "2026-01-04T23:58:27.619Z"
+    },
+    {
+      "id": "f5eb6f5f-1f3c-46c2-850d-150d7c496384",
+      "name": "Walls",
+      "components": [],
+      "properties": {},
+      "createdAt": "2026-01-05T03:50:43.080Z"
+    },
+    {
+      "id": "d283ca3c-f9ff-4137-af4b-5906b6d6f0dc",
+      "name": "Back1",
+      "components": [
+        {
+          "id": "d69c73ae-f81c-48c8-bd04-e56ee4d17229",
+          "type": "image",
+          "enabled": true,
+          "imageAssetPath": "Assets/Images/back1.jpg",
+          "originX": 0.5,
+          "originY": 0.5
+        }
+      ],
+      "properties": {},
+      "createdAt": "2026-01-05T15:44:19.356Z"
+    },
+    {
+      "id": "ca957768-5266-4cc2-b6b9-c6d98399640d",
+      "name": "SprDot0",
+      "components": [
+        {
+          "id": "92060d1f-319c-4f25-8bc2-56466bf3ecd9",
+          "type": "image",
+          "enabled": true,
+          "imageAssetPath": "Assets/Images/spr_dot_0.png",
+          "originX": 0.5,
+          "originY": 0.5
+        }
+      ],
+      "properties": {},
+      "createdAt": "2026-01-05T16:34:36.070Z"
+    },
+    {
+      "id": "ab7f202a-13c9-4963-8c5e-d8c5db956857",
+      "name": "Empty",
+      "components": [
+        {
+          "id": "1d10e902-3fd5-4702-87f6-ec3c04c03bc6",
+          "type": "arcade_group",
+          "enabled": true,
+          "bodyType": "static"
+        }
+      ],
+      "properties": {},
+      "createdAt": "2026-01-05T16:38:23.371Z"
+    },
+    {
+      "id": "798bb229-4bba-4d67-a47f-b41790ade8bc",
+      "name": "SprPlayer0",
+      "components": [
+        {
+          "id": "542488a8-857e-4865-aae9-906d4cedd73b",
+          "type": "image",
+          "enabled": true,
+          "imageAssetPath": "Assets/Images/spr_player_0.png",
+          "originX": 0.5,
+          "originY": 0.5
+        }
+      ],
+      "properties": {},
+      "createdAt": "2026-01-05T16:40:18.067Z"
+    }
+  ]
+}
