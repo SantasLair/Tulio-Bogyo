@@ -1,6 +1,5 @@
 // TileMoveController.js
 // Attach this script to your Player object.
-// Test Comment
 
 export default class PlayerController extends TulioBehaviour {
   // Optional: expose inspector properties (Tulio resolves `default.properties`)
