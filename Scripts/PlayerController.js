@@ -41,8 +41,9 @@ export default class PlayerController extends TulioBehaviour {
     }
   }
 
+  // Called every frame
   update(dt, ctx, props) {
-    const tileSize = Math.max(1, Number(props.tileSize) || 32);
+    const tileSize = Number(props.tileSize) || 32;
     const offsetX = Number(props.offsetX) || 0;
     const offsetY = Number(props.offsetY) || 0;
     const tilesPerSec = Math.max(0, Number(props.speed) || 0);
@@ -80,29 +81,28 @@ export default class PlayerController extends TulioBehaviour {
     const go = this.gameObject;
     if (!go) return;
 
-    // Convention: TulioBehaviour is attached to a Phaser Game Object.
-    // y+ is down in screen coordinates, so atan2(dy, dx) gives the expected facing.
-    const radians = Math.atan2(dir.dy, dir.dx);
-    go.setRotation(radians);
+    const dirDeg = this.gml.point_direction(this.x, this.y, this.x + dir.dx, this.y + dir.dy);
+    this.setRotationFromGmlDirection(dirDeg);
   }
 
   _advanceTowardTarget(remainingPx) {
-    const dx = this._targetX - this.x;
-    const dy = this._targetY - this.y;
-    const dist = Math.hypot(dx, dy);
-    const snapEps = 0.5;
+    // distance to target
+    const dist = this.gml.point_distance(this.x, this.y, this._targetX, this._targetY);
+    const snapDistance = 0.5;
 
-    if (dist <= snapEps) {
+    // snap if close enough
+    if (dist <= snapDistance) {
       this.x = this._targetX;
       this.y = this._targetY;
       this._moving = false;
       return remainingPx;
     }
 
+    // move toward the target
     if (remainingPx < dist) {
-      const t = remainingPx / dist;
-      this.x += dx * t;
-      this.y += dy * t;
+      const dirDeg = this.gml.point_direction(this.x, this.y, this._targetX, this._targetY);
+      this.x += this.gml.lengthdir_x(remainingPx, dirDeg);
+      this.y += this.gml.lengthdir_y(remainingPx, dirDeg);
       return 0;
     }
 
