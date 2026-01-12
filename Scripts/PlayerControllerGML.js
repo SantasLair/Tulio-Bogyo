@@ -4,6 +4,7 @@
 // - Uses Tulio's GameMaker helpers via `this.gml`
 // - Keeps logic mostly inside create/update (no deep helper stack)
 
+
 export default class PlayerControllerGML extends TulioBehaviour {
   static properties = {
     tileSize: { type: 'number', default: 32 },
@@ -60,9 +61,25 @@ export default class PlayerControllerGML extends TulioBehaviour {
     while (move_rem > 0) {
       // 1) If moving, move toward current target.
       if (this.moving) {
-        move_rem = this._move_towards_point(this.target_x, this.target_y, move_rem);
-        if (this.moving) break; // still moving: stop chaining
-        continue; // reached target: try to start a new tile
+        // Use Tulio's built-in move_towards_point (returns remaining distance)
+        const prevX = this.x;
+        const prevY = this.y;
+        this.gml.move_towards_point(this, this.target_x, this.target_y, move_rem);
+        
+        // Calculate how much we actually moved
+        const movedDist = this.gml.point_distance(prevX, prevY, this.x, this.y);
+        move_rem -= movedDist;
+        
+        // Check if we reached the target (within snap tolerance)
+        const dist = this.gml.point_distance(this.x, this.y, this.target_x, this.target_y);
+        if (dist <= 0.5) {
+          this.x = this.target_x;
+          this.y = this.target_y;
+          this.moving = false;
+          continue; // reached target: try to start a new tile
+        }
+        
+        break; // still moving: stop chaining
       }
 
       // 2) Not moving: start a new tile step.
@@ -110,35 +127,11 @@ export default class PlayerControllerGML extends TulioBehaviour {
     return { dx, dy };
   }
 
-  _move_towards_point(tx, ty, spdPx) {
-    const dist = this.gml.point_distance(this.x, this.y, tx, ty);
-    const snap = 0.5;
-
-    if (dist <= snap) {
-      this.x = tx;
-      this.y = ty;
-      this.moving = false;
-      return spdPx;
-    }
-
-    const step = Math.min(spdPx, dist);
-    const dirDeg = this.gml.point_direction(this.x, this.y, tx, ty);
-    this.x += this.gml.lengthdir_x(step, dirDeg);
-    this.y += this.gml.lengthdir_y(step, dirDeg);
-
-    if (step >= dist) {
-      this.x = tx;
-      this.y = ty;
-      this.moving = false;
-      return spdPx - dist;
-    }
-
-    return 0;
-  }
-
   _snap_to_grid(x, y, tile, ox = 0, oy = 0) {
-    const sx = Math.round((x - ox) / tile) * tile + ox;
-    const sy = Math.round((y - oy) / tile) * tile + oy;
-    return { x: sx, y: sy };
+    const tmp = { x, y };
+    // Use Tulio's GML helper (GameMaker-style move_snap).
+    // We pass an origin so the grid can be offset.
+    this.gml.move_snap(tmp, tile, tile, ox, oy);
+    return { x: tmp.x, y: tmp.y };
   }
 }
