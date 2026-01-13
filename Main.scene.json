@@ -5382,11 +5382,15 @@
       "scripts": [
         {
           "scriptPath": "Scripts/PlayerControllerGML.js",
+          "enabled": true,
           "propertyValues": {
             "tileSize": 40,
             "offsetX": -20,
             "offsetY": -20
           }
+        },
+        {
+          "scriptPath": "Scripts/PickupConsumer.js"
         }
       ],
       "properties": {},
@@ -5403,5 +5407,5 @@
     }
   ],
   "createdAt": "2026-01-04T23:11:27.799Z",
-  "modifiedAt": "2026-01-11T13:09:36.212Z"
+  "modifiedAt": "2026-01-13T22:08:16.912Z"
 }

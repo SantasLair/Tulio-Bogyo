@@ -10,6 +10,53 @@ export default class PlayerControllerGML extends TulioBehaviour {
     offsetY: { type: 'number', default: 0 }
   };
 
+  _resolveGridOffsets(tileSize) {
+    const ts = Number(tileSize) || 0;
+    const rawX = Number(this.offsetX);
+    const rawY = Number(this.offsetY);
+
+    let ox = Number.isFinite(rawX) ? rawX : 0;
+    let oy = Number.isFinite(rawY) ? rawY : 0;
+
+    // Heuristic: if offsets are unset/default (0), try to infer whether the object
+    // is meant to sit on tile centers.
+    try {
+      if (ox === 0 && ts > 0) {
+        const x = Number(this.x) || 0;
+        const r = ((x % ts) + ts) % ts;
+        const half = ts / 2;
+        if (Math.abs(r - half) < 1e-6) ox = half;
+      }
+      if (oy === 0 && ts > 0) {
+        const y = Number(this.y) || 0;
+        const r = ((y % ts) + ts) % ts;
+        const half = ts / 2;
+        if (Math.abs(r - half) < 1e-6) oy = half;
+      }
+
+      // Additional hint: in Tulio runtime the script is bound to a Phaser Container,
+      // so originX/originY may live on the visual child (image/sprite).
+      if (ox === 0 && oy === 0 && ts > 0) {
+        const go = this.gameObject;
+        let visual = null;
+        if (go && Array.isArray(go.list) && go.list.length > 0) visual = go.list[0];
+        if (!visual && go && typeof go.getAt === 'function') visual = go.getAt(0);
+
+        const originX = Number(visual?.originX);
+        const originY = Number(visual?.originY);
+        const centerOrigin = originX === 0.5 && originY === 0.5;
+        if (centerOrigin) {
+          ox = ts / 2;
+          oy = ts / 2;
+        }
+      }
+    } catch {
+      // ignore
+    }
+
+    return { offsetX: ox, offsetY: oy };
+  }
+
   create() {
     // Instance variables (like GML)
     this.moving = false;
@@ -17,16 +64,19 @@ export default class PlayerControllerGML extends TulioBehaviour {
     this.target_y = this.y;
     
     // Snap to grid on start (with offset)
-    this.x = this.gml.snap_to_grid(this.x, this.tileSize, this.offsetX);
-    this.y = this.gml.snap_to_grid(this.y, this.tileSize, this.offsetY);
+    const tileSize = Number(this.tileSize) || 32;
+    const { offsetX, offsetY } = this._resolveGridOffsets(tileSize);
+    this.x = this.gml.snap_to_grid(this.x, tileSize, offsetX);
+    this.y = this.gml.snap_to_grid(this.y, tileSize, offsetY);
     this.target_x = this.x;
     this.target_y = this.y;
   }
 
   update(dt) {
-    var tileSize = this.tileSize;
-    var offsetX = this.offsetX;
-    var offsetY = this.offsetY;
+    var tileSize = Number(this.tileSize) || 32;
+    const resolved = this._resolveGridOffsets(tileSize);
+    var offsetX = resolved.offsetX;
+    var offsetY = resolved.offsetY;
     var move_speed = this.speed * tileSize * dt; // pixels this frame
     
     // If moving, move toward target
