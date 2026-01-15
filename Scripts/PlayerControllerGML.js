@@ -10,6 +10,45 @@ export default class PlayerControllerGML extends TulioBehaviour {
     offsetY: { type: 'number', default: 0 }
   };
 
+  _configureArcadeBodyForManualMovement() {
+    const go = this.gameObject;
+    const body = go?.body;
+    if (!body) return;
+
+    // This controller moves by setting x/y directly (GameMaker-style).
+    // If Arcade integration is left enabled, Phaser may treat those deltas as motion,
+    // producing jitter/extra velocity. Keep the body only for overlaps and queries.
+    try {
+      if (typeof go.setAllowGravity === 'function') go.setAllowGravity(false);
+      else body.allowGravity = false;
+    } catch {
+      // ignore
+    }
+
+    try {
+      if (typeof go.setVelocity === 'function') go.setVelocity(0, 0);
+      else if (body.velocity) {
+        body.velocity.x = 0;
+        body.velocity.y = 0;
+      }
+    } catch {
+      // ignore
+    }
+
+    try {
+      body.moves = false;
+    } catch {
+      // ignore
+    }
+
+    try {
+      if (typeof go.setImmovable === 'function') go.setImmovable(true);
+      else body.immovable = true;
+    } catch {
+      // ignore
+    }
+  }
+
   _resolveGridOffsets(tileSize) {
     const ts = Number(tileSize) || 0;
     const rawX = Number(this.offsetX);
@@ -70,6 +109,8 @@ export default class PlayerControllerGML extends TulioBehaviour {
     this.y = this.gml.snap_to_grid(this.y, tileSize, offsetY);
     this.target_x = this.x;
     this.target_y = this.y;
+
+    this._configureArcadeBodyForManualMovement();
   }
 
   update(dt) {

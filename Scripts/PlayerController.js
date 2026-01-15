@@ -169,8 +169,13 @@ export default class PlayerController extends TulioBehaviour {
       const body = this.gameObject?.body;
 
       // Use the player's current body size if available; otherwise approximate a tile-sized body.
-      const w = Math.max(1, Number(body?.width) || (tileSize * 0.9));
-      const h = Math.max(1, Number(body?.height) || (tileSize * 0.9));
+      // IMPORTANT: when doing grid movement, a full sprite/body size can overlap adjacent tiles
+      // and make every move look blocked. Clamp probe size to the tile size by default.
+      const fallback = tileSize * 0.9;
+      const bw = Number(body?.width);
+      const bh = Number(body?.height);
+      const w = Math.max(1, Math.min(fallback, (Number.isFinite(bw) && bw > 0 ? bw : fallback)));
+      const h = Math.max(1, Math.min(fallback, (Number.isFinite(bh) && bh > 0 ? bh : fallback)));
 
       // overlapRect expects top-left.
       const rx = nextX - (w / 2);

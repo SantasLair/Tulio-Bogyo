@@ -17,7 +17,7 @@
       "settings": {
         "gravity": {
           "x": 0,
-          "y": 300
+          "y": 0
         },
         "debug": false
       }
@@ -5384,13 +5384,14 @@
           "scriptPath": "Scripts/PlayerControllerGML.js",
           "enabled": true,
           "propertyValues": {
-            "tileSize": 40,
-            "offsetX": -20,
-            "offsetY": -20
+            "tileSize": 40
           }
         },
         {
-          "scriptPath": "Scripts/PickupConsumer.js"
+          "scriptPath": "Scripts/ItemPickup.js",
+          "propertyValues": {
+            "tileSize": 40
+          }
         }
       ],
       "properties": {},
@@ -5402,10 +5403,20 @@
           "imageAssetPath": "Assets/Images/spr_player_0.png",
           "originX": 0.5,
           "originY": 0.5
+        },
+        {
+          "id": "4cd9cb05-ab55-4117-a6e3-a3589b57422e",
+          "type": "arcade_body",
+          "enabled": true,
+          "bodyType": "dynamic",
+          "bounce": 0,
+          "collideWorldBounds": false,
+          "allowGravity": true,
+          "immovable": false
         }
       ]
     }
   ],
   "createdAt": "2026-01-04T23:11:27.799Z",
-  "modifiedAt": "2026-01-13T22:08:16.912Z"
+  "modifiedAt": "2026-01-15T09:33:26.910Z"
 }
