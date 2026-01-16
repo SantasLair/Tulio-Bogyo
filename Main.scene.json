@@ -5384,7 +5384,9 @@
           "scriptPath": "Scripts/PlayerControllerGML.js",
           "enabled": true,
           "propertyValues": {
-            "tileSize": 40
+            "tileSize": 40,
+            "offsetX": 20,
+            "offsetY": 20
           }
         },
         {
