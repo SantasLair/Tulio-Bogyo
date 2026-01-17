@@ -1,5 +1,6 @@
 // PickupConsumer
 // TulioBehaviour script (recommended)
+
 export default class ItemPickupBehaviour extends TulioBehaviour {
 
   static properties = {

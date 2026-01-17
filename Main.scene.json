@@ -23,7 +23,13 @@
       }
     }
   ],
-  "scripts": [],
+  "scripts": [
+    {
+      "scriptPath": "Scripts/UIManager.js",
+      "enabled": true,
+      "name": "UIManager"
+    }
+  ],
   "preloadAssets": [],
   "instances": [
     {
@@ -5417,8 +5423,38 @@
           "immovable": false
         }
       ]
+    },
+    {
+      "id": "287f369b-ab03-45c7-961a-90d687210c7f",
+      "name": "uiback",
+      "objectId": "9fe63995-7714-4ba8-898b-7147726ad84d",
+      "type": "object",
+      "parentId": null,
+      "transform": {
+        "x": 319.9822251201694,
+        "y": 19.999999999999936,
+        "scaleX": 15.999111256008472,
+        "scaleY": 0.9999999999999982,
+        "rotation": 0
+      },
+      "zIndex": 0,
+      "opacity": 1,
+      "visible": true,
+      "locked": false,
+      "scripts": [],
+      "properties": {},
+      "components": [
+        {
+          "id": "5e7aaa57-c71d-4935-971f-86757037dcf6",
+          "type": "image",
+          "enabled": true,
+          "imageAssetPath": "Assets/Images/uiback.png",
+          "originX": 0.5,
+          "originY": 0.5
+        }
+      ]
     }
   ],
   "createdAt": "2026-01-04T23:11:27.799Z",
-  "modifiedAt": "2026-01-15T09:33:26.910Z"
+  "modifiedAt": "2026-01-17T20:34:03.034Z"
 }

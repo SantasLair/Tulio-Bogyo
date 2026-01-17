@@ -13,7 +13,7 @@
   },
   "prefabs": [],
   "createdAt": "2026-01-04T23:11:27.799Z",
-  "modifiedAt": "2026-01-15T09:13:00.387Z",
+  "modifiedAt": "2026-01-17T20:33:34.747Z",
   "activeSceneId": "c416a6a7-6375-41a5-8be0-59950975f6fe",
   "mainSceneId": "c416a6a7-6375-41a5-8be0-59950975f6fe",
   "objects": [
@@ -101,6 +101,22 @@
       ],
       "properties": {},
       "createdAt": "2026-01-05T16:40:18.067Z"
+    },
+    {
+      "id": "9fe63995-7714-4ba8-898b-7147726ad84d",
+      "name": "Uiback",
+      "components": [
+        {
+          "id": "5e7aaa57-c71d-4935-971f-86757037dcf6",
+          "type": "image",
+          "enabled": true,
+          "imageAssetPath": "Assets/Images/uiback.png",
+          "originX": 0.5,
+          "originY": 0.5
+        }
+      ],
+      "properties": {},
+      "createdAt": "2026-01-17T20:09:56.264Z"
     }
   ]
 }

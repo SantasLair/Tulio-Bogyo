@@ -165,4 +165,9 @@ export default class PlayerControllerGML extends TulioBehaviour {
       }
     }
   }
+
+  // Called by ItemPickup when overlapping an item (Dots group by default).
+  onCollisionDot(dot, ctx) {
+    // Intentionally empty: dotConsumed is emitted by ItemPickup.
+  }
 }
