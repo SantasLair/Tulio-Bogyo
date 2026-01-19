@@ -1,0 +1,66 @@
+{
+  "_type": "scene",
+  "id": "e6c3fe6a-0b45-433a-9325-1008471e8965",
+  "name": "Title",
+  "path": "Title.scene.json",
+  "folderId": null,
+  "width": 800,
+  "height": 600,
+  "backgroundColor": "#5E5E5E",
+  "backdropColor": "#000000",
+  "components": [
+    {
+      "id": "6210be7e-dbbc-4be5-adea-8f72f686f44d",
+      "type": "physics_world",
+      "enabled": true,
+      "provider": "phaser.arcade",
+      "settings": {
+        "gravity": {
+          "x": 0,
+          "y": 300
+        },
+        "debug": false
+      }
+    }
+  ],
+  "scripts": [],
+  "preloadAssets": [],
+  "instances": [
+    {
+      "id": "8c32e5c3-9f42-4c6f-8209-e569df216e57",
+      "name": "title",
+      "objectId": "9e5f3923-221f-449c-a566-b8edc62efb06",
+      "type": "object",
+      "parentId": null,
+      "transform": {
+        "x": 0,
+        "y": 0,
+        "scaleX": 1,
+        "scaleY": 1,
+        "rotation": 0
+      },
+      "zIndex": 0,
+      "opacity": 1,
+      "visible": true,
+      "locked": false,
+      "scripts": [
+        {
+          "scriptPath": "Scripts/Title.js"
+        }
+      ],
+      "properties": {},
+      "components": [
+        {
+          "id": "cca2e614-1375-40cb-baed-9f6bd632a346",
+          "type": "image",
+          "enabled": true,
+          "imageAssetPath": "Assets/Images/title.png",
+          "originX": 0,
+          "originY": 0
+        }
+      ]
+    }
+  ],
+  "createdAt": "2026-01-19T10:25:52.818Z",
+  "modifiedAt": "2026-01-19T10:46:59.388Z"
+}

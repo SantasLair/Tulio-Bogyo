@@ -13,9 +13,9 @@
   },
   "prefabs": [],
   "createdAt": "2026-01-04T23:11:27.799Z",
-  "modifiedAt": "2026-01-17T20:33:34.747Z",
+  "modifiedAt": "2026-01-19T11:27:11.047Z",
   "activeSceneId": "c416a6a7-6375-41a5-8be0-59950975f6fe",
-  "mainSceneId": "c416a6a7-6375-41a5-8be0-59950975f6fe",
+  "mainSceneId": "e6c3fe6a-0b45-433a-9325-1008471e8965",
   "objects": [
     {
       "id": "91eb3456-a1fe-4152-8fb7-ff30785dbb0a",
@@ -117,6 +117,22 @@
       ],
       "properties": {},
       "createdAt": "2026-01-17T20:09:56.264Z"
+    },
+    {
+      "id": "9e5f3923-221f-449c-a566-b8edc62efb06",
+      "name": "Title",
+      "components": [
+        {
+          "id": "cca2e614-1375-40cb-baed-9f6bd632a346",
+          "type": "image",
+          "enabled": true,
+          "imageAssetPath": "Assets/Images/title.png",
+          "originX": 0.5,
+          "originY": 0.5
+        }
+      ],
+      "properties": {},
+      "createdAt": "2026-01-19T10:26:42.778Z"
     }
   ]
 }
