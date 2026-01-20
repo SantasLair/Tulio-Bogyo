@@ -12,7 +12,7 @@ export default class Scoretracker extends TulioBehaviour {
   create(ctx, props) {
     this.score = Number.isFinite(Number(props?.startScore)) ? Number(props.startScore) : 0;
 
-    this._textObj = this._resolveTextTarget();
+    this._textObj = this.getComponent('text');
     if (!this._textObj) {
       this.log('[ScoreTracker] No Text object found on this instance.');
     }
@@ -36,19 +36,6 @@ export default class Scoretracker extends TulioBehaviour {
   destroy(ctx, props) {
     try { this._unsubscribe?.(); } catch { /* ignore */ }
     this._unsubscribe = null;
-  }
-
-  _resolveTextTarget() {
-    const go = this.gameObject;
-    if (!go) return null;
-
-    // If this instance renders as a Phaser Text, the GameObject itself supports setText().
-    if (typeof go.setText === 'function') return go;
-
-    // Otherwise (common when the instance has children), the visual text is a child of a Container.
-    const list = Array.isArray(go.list) ? go.list : [];
-    const child = list.find((c) => c && typeof c.setText === 'function');
-    return child || null;
   }
 
   _renderText(props) {
