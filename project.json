@@ -13,7 +13,7 @@
   },
   "prefabs": [],
   "createdAt": "2026-01-04T23:11:27.799Z",
-  "modifiedAt": "2026-01-19T11:27:11.047Z",
+  "modifiedAt": "2026-01-20T00:51:33.090Z",
   "activeSceneId": "c416a6a7-6375-41a5-8be0-59950975f6fe",
   "mainSceneId": "e6c3fe6a-0b45-433a-9325-1008471e8965",
   "objects": [
@@ -133,6 +133,28 @@
       ],
       "properties": {},
       "createdAt": "2026-01-19T10:26:42.778Z"
+    },
+    {
+      "id": "0494ce24-7647-425f-8b6f-94a495db8713",
+      "name": "SceneLabel",
+      "components": [
+        {
+          "id": "3a5ac5b7-25e9-450e-abfe-6d64598867d1",
+          "type": "text",
+          "enabled": true,
+          "text": "Text",
+          "fontFamily": "Arial",
+          "fontSize": 24,
+          "fontStyle": "normal",
+          "color": "#ffffff",
+          "align": "left",
+          "originX": 0,
+          "originY": 0,
+          "scrollFactor": 0
+        }
+      ],
+      "properties": {},
+      "createdAt": "2026-01-20T00:40:15.903Z"
     }
   ]
 }
